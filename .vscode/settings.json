@@ -1,0 +1,11 @@
+{
+
+    "files.exclude": {
+        ".python-version": true,
+        "uv.lock": true,
+        "**/__pycache__": true,
+        ".vscode": true,
+        ".gitignore": true,
+	"**/.venv": true,
+    }
+}

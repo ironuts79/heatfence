@@ -1,13 +1,14 @@
 [project]
-name = "reader"
+name = "unidev-tempbell"
 version = "0.1.0"
-description = "Add your description here"
+description = "Shutdown computer by critical overheating"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "dbus-next>=0.2.3",
+    "logging>=0.4.9.6",
     "pydantic>=2.11.3",
     "pydantic-settings>=2.9.1",
+    "python-daemon>=3.1.2",
     "result>=0.17.0",
     "sensors-py>=2.0",
 ]
