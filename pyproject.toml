@@ -1,7 +1,7 @@
 [project]
 name = "unidev-tempbell"
 version = "0.1.0"
-description = "Shutdown computer by critical overheating"
+description = "Do Action by critical overheating of the node"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [

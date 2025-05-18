@@ -45,23 +45,23 @@ def app_loop():
 
         if temp_slice.status == 'alarm':
             logger.info('ALARM! {}'.format(temp_slice.alarm_reason))
+            
+            try:
+                if settings.alarm == 'ignore':
+                    logger.info('call ignore action')
+                    action_ignore()
 
-            if settings.alarm == 'ignore':
-                logger.info('call ignore action')
-                action_ignore()
+                elif settings.alarm == 'dbus':
+                    logger.info('calling dbus action')
+                    action_dbus()
 
-            elif settings.alarm == 'dbus':
-                logger.info('calling dbus action')
-                action_dbus()
-
-            elif settings.alarm == 'poweroff':
-                logger.info('calling poweroff action')
-
-                try:
+                elif settings.alarm == 'poweroff':
+                    logger.info('calling poweroff action')
                     action_poweroff()
-                except ActionExecutionError as e:
-                    logger.fatal('can not execute poweroff action: {}'.format(e))
-                    exit(1)
+
+            except ActionExecutionError as e:
+                logger.fatal('can not execute poweroff action: {}'.format(e))
+                exit(1)
 
         # shootdown the node
         logger.debug("sleeping for a {} seconds".format(settings.interval))
@@ -91,8 +91,8 @@ settings = Config(_env_file = args.config)
 keep_looping = True
 
 # setting up logger
-logging.basicConfig(level=settings.loglevel, 
-                    stream=sys.stdout)
+logging.basicConfig(level = settings.loglevel, 
+                    stream = sys.stdout)
 
 #
 if __name__ == "__main__":
@@ -107,7 +107,7 @@ if __name__ == "__main__":
     if settings.alarm == 'poweroff':
         if not is_enable_action_poweroff():
             logger.fatal('config check: action poweroff is disabled in linux kernel config (see. https://www.kernel.org/doc/Documentation/admin-guide/sysrq.rst)')
-            exit(1)
+            sys.exit(1)
 
     app_init()
 

@@ -18,7 +18,7 @@ class Config(BaseSettings):
     daemon: bool = False
     alarm: Literal['ignore', 'dbus', 'poweroff'] = 'ignore'
     interval: int = 3
-    loglevel: int = logging.NOTSET
+    loglevel: int
 
     #
     @field_validator('loglevel', mode='before')
